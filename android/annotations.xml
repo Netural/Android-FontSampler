@@ -1,0 +1,5 @@
+<root>
+    <item name='android.R.layout simple_spinner_item'>
+        <annotation name='java.lang.annotation.Deprecated' />
+    </item>
+</root>
