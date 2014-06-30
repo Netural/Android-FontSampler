@@ -97,10 +97,13 @@ public class FontEditorFragment extends Fragment implements OnTaskCompled {
 
             @Override
             public void afterTextChanged(Editable editable) {
-                if (colorPicker.getText().length() > 0) {
+                if (colorPicker.getText().length() > 5) {
                     //TODO: make it better fast
                     myTextView.setTextColor(Color.parseColor("#" + colorPicker.getText()));
 
+                } else {
+                    //default color value (reset if colorcode is changed)
+                    myTextView.setTextColor(Color.BLACK);
                 }
             }
         });
@@ -112,6 +115,7 @@ public class FontEditorFragment extends Fragment implements OnTaskCompled {
 
                 String value = availableFontsAdapter.getItem(i);
                 if (value != null && !value.isEmpty()) {
+
                     Typeface myTypeface = Typeface.createFromFile(getActivity().getExternalCacheDir() + "/" + value);
 
                     myTextView.setTypeface(myTypeface);
