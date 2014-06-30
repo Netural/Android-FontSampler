@@ -33,9 +33,15 @@ public class FontEditorFragment extends Fragment implements OnTaskCompled {
     private ArrayAdapter<String> availableFontsAdapter;
     private EditText sizePicker;
     private EditText colorPicker;
+    private EditText inputText;
+
 
     private TextView myTextView;
     private TextView infoTextView;
+
+
+    private boolean isSizeInPixel;
+
 
     public FontEditorFragment() {
     }
@@ -50,15 +56,55 @@ public class FontEditorFragment extends Fragment implements OnTaskCompled {
         // get views
         myTextView = (TextView) rootView.findViewById(R.id.sampleText);
         infoTextView = (TextView) rootView.findViewById(R.id.info);
+        inputText = (EditText) rootView.findViewById(R.id.sampleInput);
         sizePicker = (EditText) rootView.findViewById(R.id.sizeBox);
         colorPicker = (EditText) rootView.findViewById(R.id.colorBox);
         availableFontsSpinner = (Spinner) rootView.findViewById(R.id.spinner);
+
 
         return rootView;
     }
 
 
+    public void resetText() {
+        myTextView.setText(getString(R.string.hello_world));
+    }
+
+    public void setSizeMetric(boolean setSizeToPixel) {
+        isSizeInPixel = setSizeToPixel;
+        //change hint text
+        if (isSizeInPixel) {
+            sizePicker.setHint(R.string.hint_size);
+        } else {
+            sizePicker.setHint(R.string.hint_size_sp);
+        }
+        if (sizePicker.getText().length() > 0) {
+            changeTextSize();
+        }
+
+    }
+
+
     private void setListeners() {
+
+        inputText.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i2, int i3) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i2, int i3) {
+                myTextView.setText(charSequence);
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
+
+
         sizePicker.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i2, int i3) {
@@ -74,13 +120,16 @@ public class FontEditorFragment extends Fragment implements OnTaskCompled {
             public void afterTextChanged(Editable editable) {
                 if (sizePicker.getText().length() > 0) {
                     //calc sp of input pixel font size
-                    int pixelSize = Integer.parseInt(sizePicker.getText().toString());
-                    float spSize = CommonUtils.pixelsToSp(getActivity(), pixelSize);
-                    //set size of font in sp
-                    myTextView.setTextSize(TypedValue.COMPLEX_UNIT_SP, spSize);
-                    infoTextView.setText(pixelSize + "px=" + spSize + "sp");
-//                    sizePicker.setHint("Size: " + spSize + "sp");
-//                    sizePicker.invalidate();
+                    if (isSizeInPixel) {
+                        changeTextSize();
+                    } else {
+//hackel set
+                        infoTextView.setText("");
+                        int spSize = Integer.parseInt(sizePicker.getText().toString());
+                        myTextView.setTextSize(TypedValue.COMPLEX_UNIT_SP, spSize);
+
+                    }
+
                 }
             }
         });
@@ -131,6 +180,14 @@ public class FontEditorFragment extends Fragment implements OnTaskCompled {
         });
     }
 
+
+    private void changeTextSize() {
+        int pixelSize = Integer.parseInt(sizePicker.getText().toString());
+        float spSize = CommonUtils.pixelsToSp(getActivity(), pixelSize);
+        //set size of font in sp
+        myTextView.setTextSize(TypedValue.COMPLEX_UNIT_SP, spSize);
+        infoTextView.setText(pixelSize + "px=" + spSize + "sp");
+    }
 
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {

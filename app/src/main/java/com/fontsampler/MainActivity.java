@@ -43,7 +43,16 @@ public class MainActivity extends Activity {
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.main, menu);
+
+
         return true;
+    }
+
+
+    @Override
+    public boolean onPrepareOptionsMenu(Menu menu) {
+
+        return super.onPrepareOptionsMenu(menu);
     }
 
     @Override
@@ -52,9 +61,9 @@ public class MainActivity extends Activity {
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
-        if (id == R.id.action_settings) {
-            return true;
-        }
+//        if (id == R.id.action_settings) {
+//            return true;
+//        }
         if (id == R.id.action_add) {
             Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
             intent.setType("application/x-font-ttf");
@@ -65,6 +74,24 @@ public class MainActivity extends Activity {
             currentFragment.addAdditionalText();
             return true;
         }
+
+        if (id == R.id.action_reset) {
+            currentFragment.resetText();
+            return true;
+        }
+
+        if (id == R.id.action_smetric) {
+            if (item.isChecked()) {
+                item.setChecked(false);
+                currentFragment.setSizeMetric(false);
+            } else {
+                item.setChecked(true);
+                currentFragment.setSizeMetric(true);
+            }
+            return true;
+        }
+
+
         return super.onOptionsItemSelected(item);
     }
 

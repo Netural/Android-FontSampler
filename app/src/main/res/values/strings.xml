@@ -3,11 +3,15 @@
 
     <string name="app_name">FileSampler</string>
     <string name="hello_world">Hello world!</string>
+    <string name="action_reset">Reset</string>
     <string name="action_settings">Settings</string>
     <string name="action_add">Add Font</string>
     <string name="action_extend">Append Text</string>
+    <string name="action_smetric">Pixel on</string>
 
     <string name="hint_size">Size in px</string>
+    <string name="hint_size_sp">Size in sp</string>
+    <string name="hint_text">Input sample text here</string>
     <string name="hint_Hex">Color in hex</string>
     <string name="hint_font">Select a Font</string>
 
@@ -17,6 +21,6 @@
         It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.
         It was popularised in the 1960s with the release of Letraset sheets containing
         Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker
-        including versions of Lorem Ipsum.</string>
+        including versions of Lorem Ipsum.UPPER CASE HERE</string>
 
 </resources>

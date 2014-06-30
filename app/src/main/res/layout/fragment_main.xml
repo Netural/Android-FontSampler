@@ -30,13 +30,14 @@
                 android:id="@+id/spinner"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-
                 android:focusable="true" />
 
-            <TextView
-                android:id="@+id/info"
+
+            <com.fontsampler.manager.FloatingHintEditText
+                android:id="@+id/sampleInput"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:hint="@string/hint_text" />
 
 
         </LinearLayout>
@@ -61,6 +62,12 @@
                 android:layout_height="wrap_content"
                 android:hint="@string/hint_Hex"
                 android:inputType="textAutoComplete" />
+
+            <TextView
+                android:id="@+id/info"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="right" />
         </LinearLayout>
     </LinearLayout>
 
