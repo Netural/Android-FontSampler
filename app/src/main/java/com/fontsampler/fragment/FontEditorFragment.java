@@ -43,6 +43,8 @@ public class FontEditorFragment extends Fragment implements OnTaskCompled {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
+        setRetainInstance(true);
         View rootView = inflater.inflate(R.layout.fragment_main, container, false);
 
         // get views
@@ -133,8 +135,6 @@ public class FontEditorFragment extends Fragment implements OnTaskCompled {
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         setListeners();
-
-
         super.onViewCreated(view, savedInstanceState);
 
     }
@@ -142,6 +142,7 @@ public class FontEditorFragment extends Fragment implements OnTaskCompled {
     @Override
     public void onResume() {
         //init data
+
         readFontsfromDir();
         super.onResume();
     }
