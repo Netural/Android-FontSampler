@@ -2,8 +2,10 @@ package com.fontsampler;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -73,11 +75,17 @@ public class MainActivity extends Activity {
             case PICKFILE_RESULT_CODE:
                 if (resultCode == RESULT_OK) {
 
+
                     Uri uri = data.getData();
 
+                    //get name of google drive
+                    Cursor cursor = this.getContentResolver().query(uri, new String[]{MediaStore.Files.FileColumns.DISPLAY_NAME}, null, null, null);
+                    cursor.moveToFirst();
+                    String name = cursor.getString(0);
+
+
                     try {
-                        File newFile = new File(getExternalCacheDir() + "/Font" + String.valueOf((int)
-                                (Math.random() * 10)) + ".ttf");
+                        File newFile = new File(getExternalCacheDir() + "/" + name);
                         newFile.createNewFile();
                         FileOutputStream out = new FileOutputStream(newFile);
                         InputStream in = getContentResolver().openInputStream(uri);

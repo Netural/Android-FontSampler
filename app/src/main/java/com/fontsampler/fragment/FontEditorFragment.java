@@ -130,9 +130,16 @@ public class FontEditorFragment extends Fragment implements OnTaskCompled {
     public void onViewCreated(View view, Bundle savedInstanceState) {
         setListeners();
 
+
+        super.onViewCreated(view, savedInstanceState);
+
+    }
+
+    @Override
+    public void onResume() {
         //init data
         readFontsfromDir();
-        super.onViewCreated(view, savedInstanceState);
+        super.onResume();
     }
 
     public void addAdditionalText() {
@@ -146,6 +153,11 @@ public class FontEditorFragment extends Fragment implements OnTaskCompled {
         new FontReaderTask(this).execute(getActivity().getExternalCacheDir().getAbsolutePath());
     }
 
+    @Override
+    public void onActivityCreated(Bundle savedInstanceState) {
+
+        super.onActivityCreated(savedInstanceState);
+    }
 
     @Override
     public void onSucess(String[] result) {

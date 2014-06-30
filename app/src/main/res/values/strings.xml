@@ -8,7 +8,7 @@
     <string name="action_extend">Append Text</string>
 
     <string name="hint_size">Size in px</string>
-    <string name="hint_Hex">Hex in hex</string>
+    <string name="hint_Hex">Color in hex</string>
     <string name="hint_font">Select a Font</string>
 
 
