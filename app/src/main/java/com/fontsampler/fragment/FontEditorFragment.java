@@ -71,6 +71,7 @@ public class FontEditorFragment extends Fragment implements OnTaskCompled {
         sizePicker.setText("");
         colorPicker.setText("");
         infoTextView.setText("");
+        inputText.setText("");
     }
 
     public void setSizeMetric(boolean setSizeToPixel) {
