@@ -68,6 +68,9 @@ public class FontEditorFragment extends Fragment implements OnTaskCompled {
 
     public void resetText() {
         myTextView.setText(getString(R.string.hello_world));
+        sizePicker.setText("");
+        colorPicker.setText("");
+        infoTextView.setText("");
     }
 
     public void setSizeMetric(boolean setSizeToPixel) {
